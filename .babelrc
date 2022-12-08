@@ -1,0 +1,17 @@
+{
+    "presets": ["next/babel"],
+    "plugins": [
+      [
+        "babel-plugin-styled-components",
+        {
+          "ssr": true,
+          "namespace": "dashboard",
+          "displayName": false,
+          "preprocess": false,
+          "fileName": false,
+          "pure": true
+        }
+      ]
+    ]
+  }
+  

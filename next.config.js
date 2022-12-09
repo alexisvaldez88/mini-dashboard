@@ -17,6 +17,12 @@ const nextConfig = {
       },
     ],
   },
+  async exportPathMap(defaultPathMap, { dev, dir, outDir, distDir, buildId }) {
+    return {
+      "/": { page: "/login" },
+      "/home": { page: "/home" },
+    }
+  }
 }
 
 module.exports = nextConfig

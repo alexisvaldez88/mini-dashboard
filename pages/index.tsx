@@ -1,8 +1,8 @@
-import { Login } from '../modules/login'
+import LoginPage from './login';
 
 const IndexPage = () => {
   return (
-   <Login />
+   <LoginPage />
   );
 }
 

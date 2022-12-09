@@ -18,6 +18,7 @@ import srcImg from "../../../public/logout.svg";
 import arrowUp from "../../../public/arrow-up.svg";
 import arrowDown from "../../../public/arrow-down.svg";
 import { Card } from "../../../components";
+import { routes } from "../../../routes/routes";
 
 const Container = styled.div`
   padding: 2rem;
@@ -82,13 +83,12 @@ export function Dashboard() {
   };
 
   async function getUserData() {
-    const URL = "/me";
     const token = localStorage.getItem("accessToken") || "";
     const config = {
       headers: { Authorization: `Bearer ${token}` },
     };
     await api
-      .get(URL, config)
+      .get(routes.URL_ME, config)
       .then((res) => {
         setUserData(res.data);
       })
@@ -98,13 +98,12 @@ export function Dashboard() {
   }
 
   async function getReportData() {
-    const URL = "/report";
     const token = localStorage.getItem("accessToken") || "";
     const config = {
       headers: { Authorization: `Bearer ${token}` },
     };
     await api
-      .get(URL, config)
+      .get(routes.URL_REPORT, config)
       .then((res) => {
         setReportData(res.data);
         buildChartData(res.data.revenuePerHour);

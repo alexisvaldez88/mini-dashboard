@@ -7,6 +7,7 @@ import { api } from "../../../core/api";
 import { useAuth } from "../../../hooks/useAuth";
 import srcImg from "../../../public/paycode.png";
 import { UserModel } from "../../../models/models";
+import { routes } from "../../../routes/routes";
 
 const Layout = styled.div`
   position: relative;
@@ -66,10 +67,9 @@ export function Login() {
 
   async function sendData() {
     console.log(userData);
-    const URL = "/login";
 
     await api
-      .post(URL, userData)
+      .post(routes.URL_LOGIN, userData)
       .then((res) => {
         window.localStorage.setItem("accessToken", res.data.token);
         window.location.href = "/dashboard";

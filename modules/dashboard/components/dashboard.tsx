@@ -106,6 +106,8 @@ export function Dashboard() {
       .get(routes.URL_REPORT, config)
       .then((res) => {
         setReportData(res.data);
+        console.log(res.data);
+        
         buildChartData(res.data.revenuePerHour);
       })
       .catch((error) => {

@@ -22,7 +22,7 @@ const CurrencyText = styled.span`
 
 const PercentDetail = styled.div<PercentProps>`
   background-color: ${({ trenddingUp }) =>
-    trenddingUp ? "#fbe5e6" : "#D5F2DF"};
+    !trenddingUp ? "#fbe5e6" : "#D5F2DF"};
   height: 1rem;
   display: flex;
   border-radius: 0.5rem;
@@ -40,7 +40,7 @@ const PercentDetail = styled.div<PercentProps>`
 const PercentValue = styled.p<PercentProps>`
   margin: 0;
   font-size: 0.8rem;
-  color: ${({ trenddingUp }) => (trenddingUp ? "#ac263b" : "#73D99F")};
+  color: ${({ trenddingUp }) => (!trenddingUp ? "#ac263b" : "#73D99F")};
   @media (min-width: 768px) {
     font-size: 1rem;
     font-weight: 600;

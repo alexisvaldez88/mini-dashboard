@@ -1,22 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import Image from "next/image";
+import { PercentProps, CardProps } from "../models/models";
 
-interface CardProps {
-  title: string;
-  detail: string | number;
-  currency: string;
-  percent?: string;
-  imgSrc?: string;
-  trenddingUp?: boolean;
-  showPercent: boolean;
-  type?: "centered" | "left" | any;
-  padding?: string;
-}
-
-interface PercentProps {
-  trenddingUp : boolean
-}
 
 const CardElm = styled.div`
   margin: 0 auto;
@@ -67,8 +53,8 @@ export function Card({
   detail,
   currency,
   showPercent,
-  imgSrc='',
-  trenddingUp=false,
+  imgSrc = "",
+  trenddingUp = false,
   percent = "",
 }: CardProps) {
   return (

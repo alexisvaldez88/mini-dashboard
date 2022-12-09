@@ -2,24 +2,22 @@
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { api } from "../../../core/api";
-import { useAuth } from "../../../hooks/useAuth";
-import { UserData } from "../../../models/models";
-import Image from "next/image";
-import srcImg from "../../../public/logout.svg";
-import arrowUp from "../../../public/arrow-up.svg";
-import arrowDown from "../../../public/arrow-down.svg";
-
-import { Card } from "../../../components";
 import {
   CartesianGrid,
-  Legend,
   Line,
   LineChart,
   ResponsiveContainer,
   Tooltip,
   XAxis,
 } from "recharts";
+import { api } from "../../../core/api";
+import Image from "next/image";
+import { useAuth } from "../../../hooks/useAuth";
+import { UserData } from "../../../models/models";
+import srcImg from "../../../public/logout.svg";
+import arrowUp from "../../../public/arrow-up.svg";
+import arrowDown from "../../../public/arrow-down.svg";
+import { Card } from "../../../components";
 
 const Container = styled.div`
   padding: 2rem;
@@ -38,7 +36,7 @@ const CardChart = styled.div`
 
   @media (min-width: 768px) {
     width: 500px;
-  height: 250px;
+    height: 250px;
   }
 `;
 
@@ -57,7 +55,7 @@ const WelcomeMessage = styled.h2`
   font-weight: 700;
 `;
 
-export function Home() {
+export function Dashboard() {
   const { isAuth } = useAuth();
   const { replace } = useRouter();
   const [userData, setUserData] = useState<UserData>({
@@ -75,11 +73,11 @@ export function Home() {
   const [reportData, setReportData] = useState<any>([]);
 
   const handleRedirect = async () => {
-    const auth = await isAuth();    
+    const auth = await isAuth();
     if (!auth) {
       replace("/login");
     } else {
-      replace("/home");
+      replace("/dashboard");
     }
   };
 
@@ -150,7 +148,6 @@ export function Home() {
     getUserData();
     getReportData();
     handleRedirect();
-    return () =>{}
   }, []);
 
   return (

@@ -1,17 +1,17 @@
 import React from "react";
 import styled from "styled-components";
-import { Home } from "../modules/home";
+import { Dashboard } from "../modules/dashboard";
 
 const Layout = styled.div`
   background-color: #d9d9db;
 `;
 
-const HomePage = () => {
+const DashboardPage = () => {
   return (
     <Layout>
-      <Home />
+      <Dashboard />
     </Layout>
   );
 };
 
-export default HomePage;
+export default DashboardPage;

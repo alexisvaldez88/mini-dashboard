@@ -1,8 +1,11 @@
-import Image from "next/image";
-import srcImg from "../../../public/paycode.png";
-import React, { useState } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+import { useRouter } from "next/router";
+import Image from "next/image";
 import { api } from "../../../core/api";
+import { useAuth } from "../../../hooks/useAuth";
+import srcImg from "../../../public/paycode.png";
 import { UserModel } from "../../../models/models";
 
 const Layout = styled.div`
@@ -49,27 +52,50 @@ export function Login() {
     password: "",
   });
 
-  async function sendData(){
+  const { isAuth } = useAuth();
+  const { replace } = useRouter();
+
+  const handleRedirect = async () => {
+    const auth = await isAuth();
+    if (!auth) {
+      replace("/login");
+    } else {
+      replace("/dashboard");
+    }
+  };
+
+  async function sendData() {
     console.log(userData);
-    const URL = '/login'
+    const URL = "/login";
 
     await api
-        .post(URL, userData)
-        .then(res => {
-          window.localStorage.setItem("accessToken", res.data.token);
-          window.location.href = "/home";
-        })
-        .catch(error => {
-          console.error(error);
-          alert("¡Usuario y/o Contraseña incorrectos!")
-        })
+      .post(URL, userData)
+      .then((res) => {
+        window.localStorage.setItem("accessToken", res.data.token);
+        window.location.href = "/dashboard";
+      })
+      .catch((error) => {
+        console.error(error);
+        alert("¡Usuario y/o Contraseña incorrectos!");
+      });
   }
+
+  useEffect(() => {
+    handleRedirect();
+  }, []);
 
   return (
     <Layout>
       <ContainerForm>
         <LogoContainer>
-          <Image src={srcImg} width={300} height={100} alt="logo" loading="eager" priority={true} />
+          <Image
+            src={srcImg}
+            width={300}
+            height={100}
+            alt="logo"
+            loading="eager"
+            priority={true}
+          />
         </LogoContainer>
 
         <FormContainer>
@@ -104,11 +130,7 @@ export function Login() {
             </Button>
           </ButtonContainer>
         </FormContainer>
-
-        
       </ContainerForm>
-
-
     </Layout>
   );
 }

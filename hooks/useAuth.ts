@@ -2,6 +2,7 @@
 import { useEffect } from "react";
 
 export function useAuth() {
+  
   let accesslocal: string | null = null;
   const isAuth = () => {
     accesslocal = localStorage.getItem("accessToken");
@@ -10,13 +11,16 @@ export function useAuth() {
     }
     return false;
   };
+
   const getToken = () => accesslocal;
   const closeSession = () => {
     localStorage.removeItem("accessToken");
   };
+
   useEffect(() => {
     isAuth();
   }, []);
+
   return {
     getToken,
     isAuth,

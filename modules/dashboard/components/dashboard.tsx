@@ -58,7 +58,9 @@ const WelcomeMessage = styled.h2`
 
 export function Dashboard() {
   const { isAuth } = useAuth();
+  const { closeSession } = useAuth();
   const { replace } = useRouter();
+
   const [userData, setUserData] = useState<UserData>({
     name: "",
     paternalSurname: "",
@@ -81,6 +83,8 @@ export function Dashboard() {
       replace("/dashboard");
     }
   };
+
+
 
   async function getUserData() {
     const token = localStorage.getItem("accessToken") || "";
@@ -105,9 +109,7 @@ export function Dashboard() {
     await api
       .get(routes.URL_REPORT, config)
       .then((res) => {
-        setReportData(res.data);
-        console.log(res.data);
-        
+        setReportData(res.data);        
         buildChartData(res.data.revenuePerHour);
       })
       .catch((error) => {
@@ -116,7 +118,7 @@ export function Dashboard() {
   }
 
   function logOut() {
-    window.localStorage.clear();
+    closeSession();
     handleRedirect();
   }
 

@@ -3,7 +3,6 @@ import styled from "styled-components";
 import Image from "next/image";
 import { PercentProps, CardProps } from "../models/models";
 
-
 const CardElm = styled.div`
   margin: 0 auto;
   display: block !important;
